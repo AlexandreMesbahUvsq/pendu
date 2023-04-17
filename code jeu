@@ -1,175 +1,254 @@
 import tkinter as tk
 import random
 import tkinter.messagebox as messagebox
-import pickle
 # Définition des mots possibles
-liste_mots = ["python", "ordinateur", "programmation", "algorithme", "variable"]
-
-# Sélection d'un mot au hasard
-mot_choisi = random.choice(liste_mots)
-
+liste_fruits = ["pomme", "banane", "orange", "fraise", "kiwi", "raisin", "ananas", "mangue", "pamplemousse", "citron", "lime", "grenade", "myrtille", "framboise", "cerise", "abricot", "nectarine", "poire", "peche", "melon", "pasteque", "figue", "prune", "avocat", "papaye", "mure", "cassis", "groseille", "mandarine", "datte", "goyave", "fruit de la passion", "cantaloup", "noix de coco", "kiwano", "jackfruit", "longane", "mangoustan", "durian", "noix de cajou", "noix de macadamia", "noix", "amande", "pistache", "noisette", "chataigne", "marron", "grenadelle"]
+liste_metiers = ["medecin", "infirmier", "pompier", "police", "enseignant", "menuisier", "electricien", "plombier", "avocat", "juge", "architecte", "artiste", "ecrivain", "journaliste", "photographe", "boulanger", "boucher", "cuisinier", "serveur", "coiffeur", "estheticienne", "couturier", "tailleur", "bijoutier", "horloger", "vendeur", "commercial", "informaticien", "webmaster", "traducteur", "interprete", "agent immobilier", "comptable", "banquier", "courtier", "psychologue", "psychiatre", "therapeute", "coach", "designer", "ingenieur", "scientifique", "agronome", "veterinaire", "agriculteur", "eleveur", "pecheur", "charpentier", "mecanicien", "soudeur"]
+liste_alcools = ["biere", "vin", "champagne", "whisky", "gin", "tequila", "rum", "vodka", "cognac", "brandy", "chartreuse", "absinthe", "liqueur", "vermouth", "porto", "sherry", "vinho verde", "vin chaud", "vin de glace", "cidre", "calvados", "pisco", "mezcal", "soju", "sake", "akvavit", "ouzo", "pastis", "ouiski", "kirsch", "amaretto", "limoncello", "baileys", "sambuca", "campari", "prosecco", "moscato", "sangria", "jagermeister", "rakia", "metaxa", "raki", "tuica", "slivovitz", "grappa", "armagnac", "porto", "vermouth", "kahlua"]
+liste_poissons = ["saumon", "truite", "thon", "maquereau", "cabillaud", "merlu", "sole", "bar", "carpe", "brochet", "anguille", "dorade", "turbot", "sardine", "hareng", "espadon", "raie", "rouget", "barbue", "fletan", "lieu", "mulet", "grondin", "merou", "requin", "anguillon", "grillon", "eglefin", "perche", "tanche", "goujon", "vivaneau", "thazard", "cichlide", "poisson chat", "morue", "julienne", "sebaste", "tassergal", "barramundi", "gadus", "silure", "carangue", "empereur", "saurel", "omble chevalier", "saumonette", "sprat"]
+liste_pays =["afghanistan", "belgique", "cameroun", "danemark", "espagne", "finlande", "ghana", "honduras", "irlande", "japon", "kenya", "luxembourg", "madagascar", "namibie", "oman", "portugal", "qatar", "roumanie", "slovaquie", "thailande", "uruguay", "venezuela", "yemen", "zambie", "argentine", "birmanie", "chine", "dominique", "equateur", "fidji", "gambie", "haiti", "indonesie", "jamaique", "kirghizistan", "liban", "mauritanie", "nigeria", "ouganda", "perou", "russie", "senegal", "ukraine", "vanuatu", "zimbabwe", "allemagne", "bolivie"]
+liste_villes = ["athenes", "barcelone", "belgrade", "berlin", "birmingham", "bologne", "budapest", "cologne", "copenhague", "dortmund", "dresde", "dublin", "dusseldorf", "essen", "francfort", "gdansk", "gdynia", "genes", "glasgow", "graz", "hambourg", "hanovre", "helsinki", "katowice", "krakow", "leeds", "leipzig", "lille", "lisbonne", "ljubljana", "londres", "lyon", "marseille", "milan", "munich", "naples", "nicosie", "oslo", "poznan", "prague", "rome", "rotterdam", "saragosse", "sofia", "stockholm", "stuttgart", "szczecin", "thessalonique", "varsovie", "vilnius"]
+liste_monuments = ["tour eiffel", "colisee", "statue de la liberte", "opera de sydney", "big ben", "muraille de chine", "tour de pise", "sagrada familia", "empire state building", "chateau de versailles", "la sagrada familia", "pyramides de gizeh", "acropole d'athenes", "taj mahal", "cathedrale notre dame de paris", "christ redempteur", "machu picchu", "la petite sirene", "alhambra", "cathedrale de seville", "atomium", "la giralda", "tour de londres", "pont du golden gate", "tour cn", "la grande muraille", "opera garnier", "chateau de neuschwanstein", "chateau de prague", "chateau de chenonceau", "temple du ciel", "palais des doges", "tour de galata", "pont charles", "ponte vecchio", "tour de belem", "pont alexandre iii", "chateau de chambord", "chateau de windsor", "cathedrale de chartres", "palais de westminster", "cathedrale saint paul de londres", "palais de buckingham", "pont de brooklyn", "la porte de brandebourg"]
+liste_personalités_historiques = ["jules cesar", "charlemagne", "guillaume le conquerant", "richard coeur de lion", "jeanne d arc", "leonard de vinci", "michel ange", "martin luther", "henri viii", "elizabeth i", "louis xiv", "peter le grand", "catherine ii de russie", "napoleon bonaparte", "karl marx", "charles darwin", "victor hugo", "gustave eiffel", "sigmund freud", "marie curie", "winston churchill", "adolf hitler", "benito mussolini", "joseph staline", "francisco franco", "mahatma gandhi", "nelson mandela", "mikhail gorbachev", "margaret thatcher", "john f. kennedy", "pape jean-paul ii", "lech walesa", "vaclav havel", "angela merkel", "francois mitterrand", "helmut kohl", "willy brandt", "charles de gaulle", "winston churchill", "napoleon iii", "otto von bismarck", "giuseppe garibaldi", "thomas more", "william shakespeare", "voltaire", "rene descartes", "adam smith"]
 # Initialisation des variables
+liste_liste = [liste_fruits,liste_metiers,liste_alcools,liste_poissons,liste_pays,liste_villes,liste_monuments,liste_personalités_historiques]
 lettres_trouvees = []
 lettres_fausses = []
 nb_coups = 7
-scores=[]
-
-#propose au joueur de continuer a jouer ou arreter
-def fin_partie():
-    global mot_choisi, lettres_trouvees, lettres_fausses, nb_coups
-    if nb_coups == 0:
-        messagebox.showinfo("Fin de partie", "Perdu : le mot était " + mot_choisi)
-    else:
-        messagebox.showinfo("Fin de partie", "Gagné !")
-    if messagebox.askyesno("Nouvelle partie", "Voulez-vous jouer une nouvelle partie ?"):
-    # Nouvelle partie
-        lettres_trouvees = []
-        lettres_fausses = []
-        nb_coups = 7
-        mot_choisi = random.choice(liste_mots)
-        label_mot.config(text=" _" * len(mot_choisi))
-        label_lettres_fausses.config(text="")
-        # Effacer l'état du pendu
-        dessin.delete("all")
-        affiche_pendu(nb_coups)
-        label_resultat.config(text="")
-        for bouton in liste_boutons:
-            bouton.config(state=tk.NORMAL)
-    else:
-    # Sauvegarde du score
-        score = nb_coups
-        sauvegarder_score(score, nb_coups)
-    # Quitte le programme
-        fenetre.quit()
-
-
-#initialisation de la fonction sauvegarder score 
-def sauvegarder_score(score, nb_coups):
-    try:
-        with open('scores.pickle', 'wb') as f:
-            scores = pickle.load(f)
-    except:
-        scores = []
+victoires = 0
+defaites = 0
+points=0
+liste_mots = []
+for i in range(len(liste_liste)):
+    for j in range(len(liste_liste[i])):
+        liste_mots.append(liste_liste[i][j])
+#fonction qui crée une fenetre permettant de choisir un theme, avec implementation de boutons
+def nouvelle_fenetre_choix_du_theme():
+    fenetre_acc = tk.Toplevel(root)
+    fenetre_acc.title("Choix du Thème")
+    label = tk.Label(fenetre_acc, text="Bienvenue sur le mode thèmes veuillez choisir un thème : \n \n")
+    label.pack()
+    def bis(theme):
+        choix_du_nombre_de_coups(theme)
+        fenetre_acc.destroy()
         
-    scores.append((nb_coups))
-    with open('scores.pickle', 'wb') as f:
-        pickle.dump(scores, f)
-
-
-#lire les scores 
-
-#afficher scores 
-# Fonction pour afficher les scores
-def afficher_scores(score):
-    if isinstance(score, (list, tuple)) and len(score) == 2:
-        message = "Score: {} - Coups restants: {}\n".format(score[0], score[1])
-    else:
-        message = "Score invalide\n"
-    print(message)
-
-
-# afficher l'état du pendu
-def affiche_pendu(nb_coups):
-    if nb_coups == 7:
-        dessin.create_line(50,400,450,400,fill='black', width=5)
-        dessin.create_line(100,400,100,100,fill='black', width=5)
-        dessin.create_line(100,150,150,100,fill='black', width=5)
-        dessin.create_line(98,100,300,100,fill='black', width=5)
-        dessin.create_line(300,100,300,150,fill='black', width=5)
-    elif nb_coups == 6:
-        dessin.create_oval(270,150,330,210, fill='red', width=5)
-    elif nb_coups == 5:   
-        dessin.create_line(300,210,300,300, fill='black', width=5)
-    elif nb_coups == 4:
-        dessin.create_line(300,230,260,220, fill='black', width=5)
-    elif nb_coups == 3:
-        dessin.create_line(300,230,340,220, fill='black', width=5)
-    elif nb_coups == 2:
-        dessin.create_line(300,300,260,320, fill='black', width=5)
-    elif nb_coups == 1:
-        dessin.create_line(300,300,340,320, fill='black', width=5)
-    else:
-        dessin.create_rectangle(0,0,500,500, fill='white')
-        dessin.create_oval(50,50,450,450, fill='red', width=5)
-        dessin.create_oval(100,150,200,250, fill='black', width=5)
-        dessin.create_oval(300,150,400,250, fill='black', width=5)
-        dessin.create_line(150,380,250,280, fill='black' ,width=30, capstyle='round')
-        dessin.create_line(250,280,350,380, fill='black', width=30, capstyle='round')
-    # Affichage des lettres fausses
-    label_lettres_fausses.config(text="Lettres fausses : " + ", ".join(lettres_fausses))
-    # Affichage du nombre de coups restants
-    label_nb_coups.config(text="Coups restants : " + str(nb_coups))
-
-# Fonction appelée lorsque l'utilisateur clique sur une lettre
-def lettre_cliquee(lettre):
-    global nb_coups, lettres_trouvees, lettres_fausses, mot_choisi, label_mot
-    if lettre in mot_choisi:
-        lettres_trouvees.append(lettre)
-    else:
-        lettres_fausses.append(lettre)
-        nb_coups-= 1
-        affiche_pendu(nb_coups)
-    # Affichage du mot masqué
-    mot_masque = ""
-    for lettre_mot in mot_choisi:
-        if lettre_mot in lettres_trouvees:
-            mot_masque += lettre_mot
+    bouton_theme = tk.Button(fenetre_acc, text= "Fruits", command =lambda theme = liste_fruits: bis(theme))
+    bouton_theme.pack(side=tk.LEFT)
+    bouton_theme = tk.Button(fenetre_acc, text= "Métiers", command =lambda theme = liste_metiers: bis(theme))
+    bouton_theme.pack(side=tk.LEFT)
+    bouton_theme = tk.Button(fenetre_acc, text= "Alcools", command =lambda theme = liste_alcools: bis(theme))
+    bouton_theme.pack(side=tk.LEFT)
+    bouton_theme = tk.Button(fenetre_acc, text= "Poissons", command =lambda theme = liste_poissons: bis(theme))
+    bouton_theme.pack(side=tk.LEFT)
+    bouton_theme = tk.Button(fenetre_acc, text= "Pays", command =lambda theme = liste_pays: bis(theme))
+    bouton_theme.pack(side=tk.LEFT)
+    bouton_theme = tk.Button(fenetre_acc, text= "Villes", command =lambda theme = liste_villes: bis(theme))
+    bouton_theme.pack(side=tk.LEFT)
+    bouton_theme = tk.Button(fenetre_acc, text= "Monuments", command =lambda theme = liste_monuments: bis(theme))
+    bouton_theme.pack(side=tk.LEFT)
+    bouton_theme = tk.Button(fenetre_acc, text= "Personnalités", command =lambda theme = bis: choix_du_nombre_de_coups(theme))
+    bouton_theme.pack(side=tk.LEFT)
+#fonction qui crée une fenetre permettant de choisir une longueur
+def nouvelle_fenetre_choix_des_longueurs():
+    fenetre_acc2 = tk.Toplevel(root)
+    fenetre_acc2.title("Choix des longueurs")
+    label = tk.Label(fenetre_acc2, text="Bienvenue sur le mode choix des longueurs veuillez choisir une longueur : \n \n")
+    label.pack()
+    liste_taille = []        
+    for i in range(len(liste_mots)):
+        liste_taille.append(len(liste_mots[i]))
+        
+    liste_taille = sorted(liste_taille)
+    list_unique = []
+    for i in liste_taille:
+        if i not in list_unique:
+            list_unique.append(i)
+            
+    def selection_option(option):
+        liste_var = []
+        for i in liste_mots:
+            if len(i) == option:
+                liste_var.append(i)
+        choix_du_nombre_de_coups(liste_var)
+        fenetre_acc2.destroy()
+            
+    size_var = tk.StringVar(fenetre_acc2)
+    size_var.set(list_unique[0])
+    size_menu = tk.OptionMenu(fenetre_acc2, size_var, *list_unique, command = selection_option)
+    size_menu.pack()
+    
+def choix_du_nombre_de_coups(theme) :
+    fenetre_acc3 = tk.Toplevel(root)
+    fenetre_acc3.title("Choix du nombre de coups")
+    label = tk.Label(fenetre_acc3, text="Veuillez choisir votre nombre de coups : \n \n")
+    label.pack()
+    def selection_option(option):
+        nouvelle_fenetre_de_pendu(theme,option)
+        fenetre_acc3.destroy()
+    size_var = tk.StringVar(fenetre_acc3)
+    size_var.set(1)
+    choix_entre_1_et_7 = [1,2,3,4,5,6,7]
+    size_menu = tk.OptionMenu(fenetre_acc3, size_var, *choix_entre_1_et_7, command = selection_option)
+    size_menu.pack()
+    
+def afficher_aides():
+        help = tk.Tk()
+        help.title("Instructions du jeu")
+        aide = tk.Label(help, text = "Le but du jeu est simple : deviner toute les lettres qui doivent\n"
+                    "composer un mot, éventuellement avec un nombre limité de tentatives et des thèmes\n"
+                    "fixés à l'avance. A chaque fois que le joueur devine une lettre, celle-ci est affichée.\n"
+                    "Dans le cas contraire, le dessin d'un pendu se met à apparaître…")
+        aide.pack() 
+    
+def afficher_scores():
+        global nb_coups,points
+        points+=(8-nb_coups)
+        fen_score=tk.Tk()
+        fen_score.title("Afficher le score")
+        score=tk.Label(fen_score,text="Score accumulé : " +  str(points))
+        score.pack()   
+# creation de la fenêtre du pendu
+def nouvelle_fenetre_de_pendu(theme,nb_coupsloc):
+    liste_mots = theme
+    mot_choisi = [random.choice(liste_mots)]
+    fenetre = tk.Toplevel(root)
+    fenetre.title("Jeu du pendu")
+    
+    # afficher les lettres fausses
+    label_lettres_fausses = tk.Label(fenetre, text="")
+    label_lettres_fausses.pack()
+    
+    # afficher le mot masqué
+    label_mot = tk.Label(fenetre, text=" _" * len(mot_choisi[-1]))
+    label_mot.pack()
+    
+    # afficher le nombre de coups restants
+    label_nb_coups = tk.Label(fenetre, text="Coups restants : " + str(nb_coups))
+    label_nb_coups.pack()
+    
+    #propose au joueur de continuer a jouer ou arreter
+    def fin_partie(mot_choisi):
+        global  lettres_trouvees, lettres_fausses, nb_coups, defaites, victoires, label_victoires , label_defaites
+        if nb_coups == 0:
+            messagebox.showinfo("Fin de partie", "Perdu : le mot était " + mot_choisi[-1])
+            defaites +=  1
         else:
-            mot_masque += "_ "
-    label_mot.config(text=mot_masque)
-    # Vérification de la fin de partie
-    if nb_coups==0:
-        fin_partie()
-    if "_" not in label_mot.cget("text"):
-        fin_partie()
-
-
-
-# creation de la fenêtre
-fenetre = tk.Tk()
-fenetre.title("Jeu du pendu")
-
-# canvas pour dessiner le pendu
-canvas = tk.Canvas(fenetre, width=200, height=200)
-canvas.pack()
-dessin=tk.Canvas(fenetre, bg="ivory", width=500, height=500)
-#button=tk.Button(fenetre, text="Aide",command=aide)
-dessin.pack(side='top')
-#button.pack(side='bottom')
-
-
-# Bouton pour afficher les scores
-bouton_scores = tk.Button(fenetre, text="Scores", command=afficher_scores)
-bouton_scores.pack()
-
-# afficher le mot masqué
-label_mot = tk.Label(fenetre, text=" _" * len(mot_choisi))
-label_mot.pack()
-
-# Création des boutons pour les lettres de l'alphabet
-liste_boutons = []
-for lettre in "abcdefghijklmnopqrstuvwxyz":
-    bouton = tk.Button(fenetre, text=lettre, command=lambda lettre=lettre: lettre_cliquee(lettre))
-    bouton.pack(side=tk.LEFT)
-    liste_boutons.append(bouton)
-
-# afficher les lettres fausses
-label_lettres_fausses = tk.Label(fenetre, text="")
-label_lettres_fausses.pack()
-
-# afficher le nombre de coups restants
-label_nb_coups = tk.Label(fenetre, text="Coups restants : " + str(nb_coups))
-label_nb_coups.pack()
-
-# afficher le résultat de la partie
-label_resultat = tk.Label(fenetre, text="")
-label_resultat.pack()
-
-
-
-# afficher le pendu
-label_pendu = tk.Label(fenetre, text="")
-label_pendu.pack()
-
+            messagebox.showinfo("Fin de partie", "Gagné !")
+            victoires += 1
+        if messagebox.askyesno("Nouvelle partie", "Voulez-vous jouer une nouvelle partie ?"):
+        # Nouvelle partie
+            lettres_trouvees = []
+            lettres_fausses = []
+            nb_coups = 7
+            label_victoires.config(text = "Nombre de victoires : " +  str(victoires))
+            label_defaites.config(text = "Nombre de défaites : " + str(defaites))
+            fenetre.destroy()
+        else:
+            root.destroy()
+    
+    
+    # Fonction appelée lorsque l'utilisateur clique sur une lettre
+    def lettre_cliquee(lettre,mot_choisi):
+        global nb_coups, lettres_trouvees
+        if lettre in mot_choisi[-1]:
+            lettres_trouvees.append(lettre)
+        else:
+            if lettre != " " and lettre != "&":
+                lettres_fausses.append(lettre)
+                nb_coups-= 1
+                affiche_pendu(nb_coups)
+            if lettre == "&":
+                nb_coups-= 1
+                affiche_pendu(nb_coups)
+        # Affichage du mot masqué
+        mot_masque = ""
+        for lettre_mot in mot_choisi[-1]:
+            if lettre_mot in lettres_trouvees:
+                mot_masque += lettre_mot
+            else:
+                mot_masque += "_ "
+        label_mot.config(text=mot_masque)
+        # Vérification de la fin de partie
+        if nb_coups==0:
+            fin_partie(mot_choisi)
+        if "_" not in label_mot.cget("text"):
+            fin_partie(mot_choisi)
+    def affiche_pendu(nb_coups):
+        if nb_coups == 7:
+            dessin.create_line(50,400,450,400,fill='black', width=5)
+            dessin.create_line(100,400,100,100,fill='black', width=5)
+            dessin.create_line(100,150,150,100,fill='black', width=5)
+            dessin.create_line(98,100,300,100,fill='black', width=5)
+            dessin.create_line(300,100,300,150,fill='black', width=5)
+        elif nb_coups == 6:
+            dessin.create_line(50,400,450,400,fill='black', width=5)
+            dessin.create_line(100,400,100,100,fill='black', width=5)
+            dessin.create_line(100,150,150,100,fill='black', width=5)
+            dessin.create_line(98,100,300,100,fill='black', width=5)
+            dessin.create_line(300,100,300,150,fill='black', width=5)
+            dessin.create_oval(270,150,330,210, fill='red', width=5)
+        elif nb_coups == 5:   
+            dessin.create_line(300,210,300,300, fill='black', width=5)
+        elif nb_coups == 4:
+            dessin.create_line(300,230,260,220, fill='black', width=5)
+        elif nb_coups == 3:
+            dessin.create_line(300,230,340,220, fill='black', width=5)
+        elif nb_coups == 2:
+            dessin.create_line(300,300,260,320, fill='black', width=5)
+        elif nb_coups == 1:
+            dessin.create_line(300,300,340,320, fill='black', width=5)
+        else:
+            dessin.create_rectangle(0,0,500,500, fill='white')
+            dessin.create_oval(50,50,450,450, fill='red', width=5)
+            dessin.create_oval(100,150,200,250, fill='black', width=5)
+            dessin.create_oval(300,150,400,250, fill='black', width=5)
+            dessin.create_line(150,380,250,280, fill='black' ,width=30, capstyle='round')
+            dessin.create_line(250,280,350,380, fill='black', width=30, capstyle='round')
+        # Affichage des lettres fausses
+        label_lettres_fausses.config(text="Lettres fausses : " + ", ".join(lettres_fausses))
+        # Affichage du nombre de coups restants
+        label_nb_coups.config(text="Coups restants : " + str(nb_coups))
+    
+    
+    # canvas pour dessiner le pendu
+    canvas = tk.Canvas(fenetre, width=100, height=100)
+    canvas.pack()
+    dessin=tk.Canvas(fenetre, bg="ivory", width=450, height=450)
+    #button=tk.Button(fenetre, text="Aide",command=aide)
+    dessin.pack(side='top')
+    #button.pack(side='bottom')
+    lettre_cliquee(" ",mot_choisi)
+    while nb_coupsloc != nb_coups:
+        lettre_cliquee("&",mot_choisi)
+    
+    # Bouton pour afficher les aides
+    bouton_aides = tk.Button(fenetre, text="Aides", command=afficher_aides)
+    bouton_aides.pack()
+    
+    # Bouton pour afficher les scores
+    bouton_scores = tk.Button(fenetre, text="Scores", command=afficher_scores)
+    bouton_scores.pack()
+    
+    # Création des boutons pour les lettres de l'alphabet
+    liste_boutons = []
+    for lettre in "abcdefghijklmnopqrstuvwxyz":
+        bouton = tk.Button(fenetre, text=lettre, command=lambda lettre=lettre: lettre_cliquee(lettre,mot_choisi))
+        bouton.pack(side=tk.LEFT)
+        liste_boutons.append(bouton)
+#création de la premier fenetre avec le choix des modes
+root = tk.Tk()
+root.title("Fenêtre d'accueil")
+label = tk.Label(root, text="Bienvenue sur le jeu du pendu veuillez choisir un mode : \n \n")
+label.pack()
+bouton_theme = tk.Button(root, text= "Thèmes", command = nouvelle_fenetre_choix_du_theme)
+bouton_theme.pack()
+bouton_theme = tk.Button(root, text= "Choix de longueur du mot", command = nouvelle_fenetre_choix_des_longueurs)
+bouton_theme.pack()
+bouton_theme = tk.Button(root, text= "Thème Aleatoire", command =lambda theme = liste_mots: choix_du_nombre_de_coups(theme))
+bouton_theme.pack()
+label_victoires = tk.Label(root, text="Nombre de victoires : " +  str(victoires))
+label_victoires.pack(side=tk.LEFT)
+label_defaites = tk.Label(root, text="Nombre de défaites : " + str(defaites))
+label_defaites.pack(side=tk.LEFT)
 # demarrage programme
-fenetre.mainloop()
+root.mainloop()
