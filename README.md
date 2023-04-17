@@ -13,4 +13,4 @@ De plus, nous avons utilisé tkinter pour créer des menus déroulant pour séle
 Nous avons rajouté un compteur de score qui permet d'avoir le score cumulé (nb d'erreur - nb d'erreurs autorisés) ainsi que le nombre de défaites et de victoire.
 
 
-Le dessin du pendu a été repris d'un autre groupe de TD
+Le dessin du pendu a été repris d'un autre groupe de TD et chatgpt pou generer les mots presents dans les listes
