@@ -188,6 +188,11 @@ def nouvelle_fenetre_de_pendu(theme,nb_coupsloc):
             dessin.create_line(98,100,300,100,fill='black', width=5)
             dessin.create_line(300,100,300,150,fill='black', width=5)
         elif nb_coups == 6:
+            dessin.create_line(50,400,450,400,fill='black', width=5)
+            dessin.create_line(100,400,100,100,fill='black', width=5)
+            dessin.create_line(100,150,150,100,fill='black', width=5)
+            dessin.create_line(98,100,300,100,fill='black', width=5)
+            dessin.create_line(300,100,300,150,fill='black', width=5)
             dessin.create_oval(270,150,330,210, fill='red', width=5)
         elif nb_coups == 5:   
             dessin.create_line(300,210,300,300, fill='black', width=5)
